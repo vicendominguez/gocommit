@@ -93,7 +93,7 @@ func generateCommitMessage(diff string) (string, error) {
 		return "", fmt.Errorf("Error creating ollama client: %v", err)
 	}
 
-	prompt := "Analyze the following code diff and generate a summarized and concise commit message that describes the changes made. Include only the commit message itself, without any introduction or conclusion. No more than 20 words. Diff:\n" + diff
+	prompt := "Analyze the following code diff and generate a summarized and concise commit message that describes the changes made. Include only the commit message itself, without any introduction or conclusion using not more than 20 words. Diff:\n" + diff
 
 	messages := []api.Message{
 		api.Message{
