@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/pterm/pterm"
+
 	"gocommit/internal/cli"
 	"gocommit/internal/git"
 	"gocommit/internal/ollama"
@@ -19,7 +21,7 @@ func main() {
 
 	// Mostrar versión y salir
 	if opts.ShowVersion {
-		fmt.Printf("git-commit-helper version: %s\n", version.Version)
+		fmt.Printf("gocommit version: %s\n", version.Version)
 		return
 	}
 
@@ -59,8 +61,9 @@ func main() {
 	// Crear el commit
 	commitHash, err := git.CreateCommit(repo, fullCommitMessage)
 	if err != nil {
-		log.Fatalf("Error creating commit: %v", err)
+		pterm.Error.Printf("Error creating commit: %v", err)
+	} else {
+		pterm.Success.Printf("Commit created successfully: %s\n", fullCommitMessage)
+		pterm.Info.Printf("Commit created with hash: %s\n", commitHash)
 	}
-
-	fmt.Printf("Commit created successfully: %s\n", commitHash)
 }
