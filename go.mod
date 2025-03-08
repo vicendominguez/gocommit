@@ -1,4 +1,4 @@
-module git-commit-msg
+module gocommit
 
 go 1.24.0
 

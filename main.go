@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os/exec"
 	"time"
@@ -15,7 +16,28 @@ import (
 	"github.com/ollama/ollama/api"
 )
 
+const version = "0.0.1"
+
 func main() {
+
+	noPrefix := flag.Bool("no-prefix", false, "Disable the prefix in the commit message")
+	customPrefix := flag.String("prefix", "", "Define a custom prefix for the commit message")
+	showVersion := flag.Bool("version", false, "Show the version of the application")
+	showHelp := flag.Bool("help", false, "Show available flags")
+
+	flag.Parse()
+
+	// Mostrar la versión y salir
+	if *showVersion {
+		fmt.Printf("Version: %s\n", version)
+		return
+	}
+
+	// Mostrar la ayuda y salir
+	if *showHelp {
+		flag.PrintDefaults()
+		return
+	}
 	// Open the current repository
 	repo, err := git.PlainOpen(".")
 	if err != nil {
@@ -45,8 +67,17 @@ func main() {
 		return
 	}
 
-	// Add the branch name to the commit message
-	fullCommitMessage := fmt.Sprintf("[%s] %s", branchName, commitMessage)
+	var prefixMessage string
+	if *noPrefix {
+		prefixMessage = ""
+	} else if *customPrefix != "" {
+		prefixMessage = fmt.Sprintf("[%s] ", *customPrefix)
+	} else {
+		prefixMessage = fmt.Sprintf("[%s] ", branchName)
+	}
+
+	// Añadir el prefijo al mensaje del commit
+	fullCommitMessage := fmt.Sprintf("%s%s", prefixMessage, commitMessage)
 
 	// Create the commit
 	err = createGitCommit(repo, fullCommitMessage)
@@ -188,3 +219,4 @@ func createGitCommit(repo *git.Repository, message string) error {
 	pterm.Info.Printf("Commit created with hash: %s\n", commit.String())
 	return nil
 }
+
