@@ -9,6 +9,7 @@ import (
 	"github.com/go-git/go-git/v5/config"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/object"
+	"github.com/pterm/pterm"
 )
 
 // OpenRepository opens a Git repository at the specified path.
@@ -78,29 +79,53 @@ func CreateCommit(repo *git.Repository, message string) (string, error) {
 		return "", fmt.Errorf("failed to get worktree: %w", err)
 	}
 
-	// Stage all changes
+	// Add all changes to the staging area
 	_, err = worktree.Add(".")
 	if err != nil {
 		return "", fmt.Errorf("failed to add changes: %w", err)
 	}
 
-	// Retrieve the user's Git configuration
-	cfg, err := repo.ConfigScoped(config.LocalScope)
+	// Obtener la configuración global y local
+	globalCfg, err := repo.ConfigScoped(config.GlobalScope)
 	if err != nil {
-		return "", fmt.Errorf("failed to get Git config: %w", err)
+		return "", fmt.Errorf("error reading global Git configuration: %v", err)
 	}
+
+	localCfg, err := repo.ConfigScoped(config.LocalScope)
+	if err != nil {
+		return "", fmt.Errorf("error reading local Git configuration: %v", err)
+	}
+
+	// Combinar las configuraciones: priorizar la configuración local sobre la global
+	userName := localCfg.User.Name
+	if userName == "" {
+		userName = globalCfg.User.Name
+	}
+
+	userEmail := localCfg.User.Email
+	if userEmail == "" {
+		userEmail = globalCfg.User.Email
+	}
+
+	if userName == "" || userEmail == "" {
+		return "", fmt.Errorf("user name or email not found in Git configuration")
+	}
+
+	now := time.Now()
 
 	// Create the commit
 	commit, err := worktree.Commit(message, &git.CommitOptions{
 		Author: &object.Signature{
-			Name:  cfg.User.Name,
-			Email: cfg.User.Email,
-			When:  time.Now(),
+			Name:  userName,
+			Email: userEmail,
+			When:  now,
 		},
 	})
 	if err != nil {
 		return "", fmt.Errorf("failed to create commit: %w", err)
 	}
 
+	// Print the hash of the created commit
+	pterm.Info.Printf("Commit created with hash: %s\n", commit.String())
 	return commit.String(), nil
 }

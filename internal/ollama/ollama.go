@@ -14,7 +14,7 @@ func GenerateCommitMessage(diff string) (string, error) {
 		return "", fmt.Errorf("failed to create Ollama client: %w", err)
 	}
 
-	prompt := fmt.Sprintf("Analyze the following code diff and generate a concise commit message:\n%s", diff)
+	prompt := fmt.Sprintf("Analyze the following code diff and generate a summarized and concise commit message that describes the changes made. Include only the commit message itself, without any introduction or conclusion using not more than 20 words. Diff:\n", diff)
 
 	messages := []api.Message{
 		{Role: "system", Content: "You are an expert code analyzer."},
