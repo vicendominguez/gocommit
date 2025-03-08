@@ -55,10 +55,8 @@ func main() {
 		log.Fatalf("Error generating commit message: %v", err)
 	}
 
-	// Construir el mensaje final del commit
 	fullCommitMessage := git.BuildCommitMessage(branchName, commitMessage, opts.NoPrefix, opts.CustomPrefix)
 
-	// Crear el commit
 	commitHash, err := git.CreateCommit(repo, fullCommitMessage)
 	if err != nil {
 		pterm.Error.Printf("Error creating commit: %v", err)

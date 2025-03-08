@@ -9,7 +9,6 @@ import (
 	"github.com/go-git/go-git/v5/config"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/object"
-	"github.com/pterm/pterm"
 )
 
 // OpenRepository opens a Git repository at the specified path.
@@ -125,7 +124,5 @@ func CreateCommit(repo *git.Repository, message string) (string, error) {
 		return "", fmt.Errorf("failed to create commit: %w", err)
 	}
 
-	// Print the hash of the created commit
-	pterm.Info.Printf("Commit created with hash: %s\n", commit.String())
 	return commit.String(), nil
 }

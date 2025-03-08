@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/ollama/ollama/api"
+	"github.com/pterm/pterm"
 )
 
 // GenerateCommitMessage genera un mensaje de commit usando Ollama.
@@ -38,6 +39,6 @@ func GenerateCommitMessage(diff string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("failed to generate commit message: %w", err)
 	}
-
+	pterm.Warning.Println(commitMessage)
 	return commitMessage, nil
 }
