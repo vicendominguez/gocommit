@@ -77,6 +77,8 @@ func getCurrentBranch(repo *git.Repository) (string, error) {
 	return ref.Name().Short(), nil
 }
 
+// I've tried it using go-git but I had all kind of problems.
+// To have something working I've made this bullshit.
 func getGitDiffCached(repo *git.Repository) (string, error) {
 	cmd := exec.Command("git", "diff", "--cached")
 	out, err := cmd.CombinedOutput()

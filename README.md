@@ -2,7 +2,7 @@
 
 ## Installation
 
-Pending
+working on it....
 
 ## Usage
 
@@ -24,3 +24,10 @@ Pending
   ```bash
   git branch <branch-name>
   git checkout <branch-name>
+
+## Work in progress
+
+BUGS to fix:
+
+- [ ] Currently you must be in your git root directory
+- [ ] The fucking `git diff --cached` is  not implemented using the `go-git` library. Currently is a shitty exec.
