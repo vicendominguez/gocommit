@@ -21,7 +21,7 @@ func main() {
 
 	// Mostrar versión y salir
 	if opts.ShowVersion {
-		fmt.Printf("gocommit version: %s\n", version.Version)
+		fmt.Printf("%s\n", version.Version)
 		return
 	}
 
