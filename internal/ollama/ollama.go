@@ -3,6 +3,7 @@ package ollama
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	"github.com/ollama/ollama/api"
 )
@@ -38,5 +39,8 @@ func GenerateCommitMessage(diff string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("failed to generate commit message: %w", err)
 	}
+
+	//cleaning up the ollama response
+	commitMessage = strings.Trim(commitMessage, `"`)
 	return commitMessage, nil
 }
