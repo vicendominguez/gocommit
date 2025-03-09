@@ -41,12 +41,12 @@ sudo dpkg -i gocommit_X.X.X_amd64.deb
 ## Usage
 
 ```
-❯ vim README.md
-❯ git add README.md
-❯ gocommit
+ds-1❯ vim README.md
+ds-1❯ git add README.md
+ds-1❯ gocommit
  SUCCESS  Commit created successfully: [ds-1] Automated commit message generation via ollama added to README
  INFO  Commit created with hash: fbb5bdf4169bef87658afe3e15317f547d2a780c
-❯
+ds-1❯
 ```
 
 ```
