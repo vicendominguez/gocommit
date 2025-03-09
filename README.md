@@ -38,6 +38,22 @@ sudo dpkg -i gocommit_X.X.X_amd64.deb
 
 ## Usage
 
+
+```
+gocommit --help
+Usage: gocommit [options]
+  -help
+    	Show available flags
+  -no-prefix
+    	Disable the prefix in the commit message
+  -prefix string
+    	Define a custom prefix for the commit message
+  -version
+    	Show the version of the application
+
+```
+
+
 1. **Stage Your Changes**:
    - Use `git add` to stage your changes:
      ```bash
