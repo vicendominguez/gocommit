@@ -46,7 +46,8 @@ ds-1❯ git add README.md
 ds-1❯ gocommit
  SUCCESS  Commit created successfully: [ds-1] Automated commit message generation via ollama added to README
  INFO  Commit created with hash: fbb5bdf4169bef87658afe3e15317f547d2a780c
-ds-1❯
+ds-1❯ git push
+ds-1❯ 
 ```
 
 ```
@@ -74,6 +75,11 @@ Usage: gocommit [options]
    - Invoke the tool to automatically generate and create a commit:
      ```bash
      gocommit
+     ```
+3. **puah Your Changes**:
+   -  Use  `git push` to push your changes:
+     ```bash
+     git push
      ```
 
 ## Rules
