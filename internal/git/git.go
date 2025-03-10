@@ -5,20 +5,37 @@ import (
 	"os/exec"
 	"time"
 
+	"path/filepath"
+
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/config"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/object"
 )
 
-// OpenRepository opens a Git repository at the specified path.
-// It returns a pointer to the repository or an error if the repository cannot be opened.
 func OpenRepository(path string) (*git.Repository, error) {
-	repo, err := git.PlainOpen(path)
+	// Convert the path to an absolute path
+	absPath, err := filepath.Abs(path)
 	if err != nil {
-		return nil, fmt.Errorf("failed to open repository: %w", err)
+		return nil, fmt.Errorf("failed to get absolute path: %w", err)
 	}
-	return repo, nil
+
+	// Start searching from the given path and move up the directory tree
+	for {
+		// Try to open the repository at the current path
+		repo, err := git.PlainOpen(absPath)
+		if err == nil {
+			return repo, nil
+		}
+
+		// If we reach the root directory and still haven't found the .git directory, return an error
+		if absPath == filepath.Dir(absPath) {
+			return nil, fmt.Errorf("no Git repository found in %s or any parent directory", path)
+		}
+
+		// Move up to the parent directory
+		absPath = filepath.Dir(absPath)
+	}
 }
 
 // GetCurrentBranch retrieves the name of the current branch.

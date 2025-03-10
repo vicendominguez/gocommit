@@ -19,7 +19,7 @@ func ParseFlags() (Options, error) {
 
 	flag.BoolVar(&opts.ShowVersion, "version", false, "Show the version of the application")
 	flag.BoolVar(&opts.ShowHelp, "help", false, "Show available flags")
-	flag.BoolVar(&opts.NoPrefix, "no-prefix", false, "Disable the prefix in the commit message")
+	flag.BoolVar(&opts.NoPrefix, "no-prefix", false, "Disable the prefix in the commit message. [branch] by default")
 	flag.StringVar(&opts.CustomPrefix, "prefix", "", "Define a custom prefix for the commit message")
 
 	flag.Parse()
