@@ -2,6 +2,9 @@
 
 This creates commits with automatically generated messages from the `git diff --cached` using ollama
 
+![example](images/gocommit.png)
+
+
 ## Installation
 
 ### Precompiled Binaries
@@ -41,26 +44,15 @@ sudo dpkg -i gocommit_X.X.X_amd64.deb
 ## Usage
 
 ```
-ds-1❯ vim README.md
-ds-1❯ git add README.md
-ds-1❯ gocommit
- SUCCESS  Commit created successfully: [ds-1] Automated commit message generation via ollama added to README
- INFO  Commit created with hash: fbb5bdf4169bef87658afe3e15317f547d2a780c
-ds-1❯ git push
-ds-1❯ 
-```
-
-```
-gocommit --help
 Usage: gocommit [options]
   -help
     	Show available flags
   -no-prefix
-    	Disable the prefix in the commit message
+    	Disable the prefix in the commit message. [branch] by default
   -prefix string
     	Define a custom prefix for the commit message
   -version
-    	Show the version of the application
+    	Show the version of the applicationgocommit --help
 
 ```
 
