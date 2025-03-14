@@ -57,6 +57,12 @@ func main() {
 
 	fullCommitMessage := git.BuildCommitMessage(branchName, commitMessage, opts.NoPrefix, opts.CustomPrefix)
 
+	if opts.DryRun {
+		pterm.Warning.Printfln("DRYRUN ENABLED")
+		pterm.Info.Printf("Commit message: %s", fullCommitMessage)
+		return
+	}
+
 	commitHash, err := git.CreateCommit(repo, fullCommitMessage)
 	if err != nil {
 		pterm.Error.Printf("Error creating commit: %v", err)

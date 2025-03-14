@@ -42,12 +42,12 @@ jobs:
           release_name: ${{ github.event.release.tag_name }}
           ldflags: -s -X main.version=${{ github.event.release.tag_name }}
       - name: Show release asset directory
-        run: echo "######## Release assets are in ${{ steps.buildgo.outputs.release_asset_dir }}"
+        run: ls -alR ${{ steps.buildgo.outputs.release_asset_dir }}
       - name: 'Upload GitHub Artifact'
         uses: actions/upload-artifact@v4
         with:
           name: gocommit-${{ github.event.release.tag_name }}-linux-amd64
-          path: ${{ steps.buildgo.outputs.release_asset_dir }}
+          path: ${{ steps.buildgo.outputs.release_asset_dir }}/
           overwrite: true
   debian:
     runs-on: ubuntu-latest

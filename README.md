@@ -45,6 +45,8 @@ sudo dpkg -i gocommit_X.X.X_amd64.deb
 
 ```
 Usage: gocommit [options]
+  -dry-run
+    	Show a message example
   -help
     	Show available flags
   -no-prefix
@@ -52,8 +54,7 @@ Usage: gocommit [options]
   -prefix string
     	Define a custom prefix for the commit message
   -version
-    	Show the version of the applicationgocommit --help
-
+    	Show the version of the application
 ```
 
 
@@ -80,6 +81,8 @@ Usage: gocommit [options]
   ```bash
   git branch <branch-name>
   git checkout <branch-name>
+
+- Reminder: Dry-run mode is not deterministic. The message is coming from Ollama with LLM.   
 
 ## Work in progress
 
