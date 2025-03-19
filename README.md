@@ -9,7 +9,7 @@ This creates commits with automatically generated messages from the `git diff --
 
 ### Precompiled Binaries
 
-You can download the precompiled binaries from the [releases](https://github.com/vicendominguez/your-repo/releases) page on GitHub.
+You can download the precompiled binaries from the [releases](https://github.com/vicendominguez/gocommit/releases) page on GitHub.
 
 #### Linux (amd64)
 
@@ -23,7 +23,7 @@ You can download the precompiled binaries from the [releases](https://github.com
 
 #### macOS (darwin/amd64 and darwin/arm64)
 
-1. Download the macOS binary from the releases page.
+1. Download the macOS binary from the [releases](https://github.com/vicendominguez/gocommit/releases) page.
 2. Make the binary executable:
 
    ```bash
@@ -33,7 +33,7 @@ You can download the precompiled binaries from the [releases](https://github.com
 
 #### Debian Package (amd64)
 
-1. Download the .deb package from the releases page.
+1. Download the .deb package from the [releases](https://github.com/vicendominguez/gocommit/releases) page.
 
 2. Install the package using dpkg:
 
