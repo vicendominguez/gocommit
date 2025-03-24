@@ -7,6 +7,10 @@ This creates commits with automatically generated messages from the `git diff --
 
 ## Installation
 
+### ⚠️ Requirement
+```
+ollama pull llama3.1
+```
 ### Precompiled Binaries
 
 You can download the precompiled binaries from the [releases](https://github.com/vicendominguez/gocommit/releases) page on GitHub.
