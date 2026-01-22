@@ -9,7 +9,7 @@ This creates commits with automatically generated messages from the `git diff --
 
 ### ⚠️ Requirement
 ```
-ollama pull llama3.1
+ollama pull gemma3
 ```
 ### Precompiled Binaries
 
@@ -53,6 +53,8 @@ Usage: gocommit [options]
     	Show a message example
   -help
     	Show available flags
+  -model string
+    	Specify the Ollama model to use (default "gemma3")
   -no-prefix
     	Disable the prefix in the commit message. [branch] by default
   -prefix string
@@ -86,7 +88,7 @@ Usage: gocommit [options]
   git branch <branch-name>
   git checkout <branch-name>
 
-- Reminder: Dry-run mode is not deterministic. The message is coming from Ollama with LLM.   
+- Reminder: Dry-run mode is not deterministic. The message is coming from Ollama with LLM.
 
 ## Work in progress
 

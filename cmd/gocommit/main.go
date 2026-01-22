@@ -48,9 +48,12 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error getting staged diff: %v", err)
 	}
+	if diff == "" {
+		log.Fatal("No staged changes detected. Was a git add done?")
+	}
 
 	// Generar el mensaje del commit usando Ollama
-	commitMessage, err := ollama.GenerateCommitMessage(diff)
+	commitMessage, err := ollama.GenerateCommitMessage(diff, opts.Model)
 	if err != nil {
 		log.Fatalf("Error generating commit message: %v", err)
 	}
