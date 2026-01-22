@@ -25,7 +25,16 @@ You can download the precompiled binaries from the [releases](https://github.com
    sudo mv gocommit-vX.X.X-linux-amd64 /usr/local/bin/gocommit
    ```
 
-#### macOS (darwin/amd64 and darwin/arm64)
+#### macOS
+
+**Using Homebrew (Recommended):**
+
+```bash
+brew tap vicendominguez/tap
+brew install gocommit
+```
+
+**Manual Installation:**
 
 1. Download the macOS binary from the [releases](https://github.com/vicendominguez/gocommit/releases) page.
 2. Make the binary executable:
