@@ -95,12 +95,6 @@ func CreateCommit(repo *git.Repository, message string) (string, error) {
 		return "", fmt.Errorf("failed to get worktree: %w", err)
 	}
 
-	// Add all changes to the staging area
-	_, err = worktree.Add(".")
-	if err != nil {
-		return "", fmt.Errorf("failed to add changes: %w", err)
-	}
-
 	// Obtener la configuración global y local
 	globalCfg, err := repo.ConfigScoped(config.GlobalScope)
 	if err != nil {

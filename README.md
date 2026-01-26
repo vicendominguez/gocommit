@@ -75,7 +75,11 @@ Usage: gocommit [options]
 
 
 1. **Stage Your Changes**:
-   - Use `git add` to stage your changes:
+   - Stage specific files you want to commit:
+     ```bash
+     git add file1.go file2.go
+     ```
+   - Or stage all changes:
      ```bash
      git add -A
      ```
@@ -89,8 +93,8 @@ Usage: gocommit [options]
      ```bash
      gocommit -c
      ```
-3. **puah Your Changes**:
-   -  Use  `git push` to push your changes:
+3. **Push Your Changes**:
+   -  Use `git push` to push your changes:
      ```bash
      git push
      ```
