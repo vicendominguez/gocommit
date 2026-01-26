@@ -58,6 +58,7 @@ sudo dpkg -i gocommit_X.X.X_amd64.deb
 
 ```
 Usage: gocommit [options]
+  -c	Use conventional commits format
   -dry-run
     	Show a message example
   -help
@@ -83,6 +84,10 @@ Usage: gocommit [options]
    - Invoke the tool to automatically generate and create a commit:
      ```bash
      gocommit
+     ```
+   - For conventional commits format ([spec](https://www.conventionalcommits.org/en/v1.0.0/)):
+     ```bash
+     gocommit -c
      ```
 3. **puah Your Changes**:
    -  Use  `git push` to push your changes:

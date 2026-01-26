@@ -9,13 +9,13 @@ import (
 )
 
 // GenerateCommitMessage genera un mensaje de commit usando Ollama.
-func GenerateCommitMessage(diff string, model string) (string, error) {
+func GenerateCommitMessage(diff string, model string, conventional bool) (string, error) {
 	client, err := api.ClientFromEnvironment()
 	if err != nil {
 		return "", fmt.Errorf("failed to create Ollama client: %w", err)
 	}
 
-	prompt := "Generate a max 10 words commit message from this diff: " + diff
+	prompt := buildPrompt(diff, conventional)
 
 	messages := []api.Message{
 		{Role: "system", Content: "You are an expert code analyzer."},
@@ -46,4 +46,21 @@ func GenerateCommitMessage(diff string, model string) (string, error) {
 	//cleaning up the ollama response
 	commitMessage = strings.Trim(commitMessage, `"`)
 	return commitMessage, nil
+}
+
+func buildPrompt(diff string, conventional bool) string {
+	if conventional {
+		return `Generate a conventional commit message following this format:
+<type>: <description>
+
+Types: feat, fix, docs, style, refactor, perf, test, chore
+Rules:
+- description: lowercase, imperative mood, no period
+- max 72 characters total
+- output ONLY the commit message
+
+Diff:
+` + diff
+	}
+	return "Generate a max 10 words commit message from this diff. Output ONLY the commit message: " + diff
 }

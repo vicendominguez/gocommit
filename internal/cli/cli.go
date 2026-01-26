@@ -13,6 +13,7 @@ type Options struct {
 	CustomPrefix string
 	DryRun       bool
 	Model        string
+	Conventional bool
 }
 
 func ParseFlags() (Options, error) {
@@ -24,6 +25,7 @@ func ParseFlags() (Options, error) {
 	flag.BoolVar(&opts.NoPrefix, "no-prefix", false, "Disable the prefix in the commit message. [branch] by default")
 	flag.StringVar(&opts.CustomPrefix, "prefix", "", "Define a custom prefix for the commit message")
 	flag.StringVar(&opts.Model, "model", "gemma3", "Specify the Ollama model to use")
+	flag.BoolVar(&opts.Conventional, "c", false, "Use conventional commits format")
 
 	flag.Parse()
 

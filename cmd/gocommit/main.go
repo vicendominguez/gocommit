@@ -53,7 +53,7 @@ func main() {
 	}
 
 	// Generar el mensaje del commit usando Ollama
-	commitMessage, err := ollama.GenerateCommitMessage(diff, opts.Model)
+	commitMessage, err := ollama.GenerateCommitMessage(diff, opts.Model, opts.Conventional)
 	if err != nil {
 		log.Fatalf("Error generating commit message: %v", err)
 	}
